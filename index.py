@@ -29,7 +29,7 @@ class Interactions():
     def all_questions():
         return jsonify(questions)
 
-    @app.route('/questions/id', methods=['GET'])
+    @app.route('/api/v1/questions/id', methods=['GET'])
     def one_question():
         if 'id' in request.args:
             id = int(request.args['id'])
@@ -48,7 +48,7 @@ class Interactions():
         added_question = questions.append(request.get_json())
         return jsonify(added_question)
 
-    @app.route('/questions/id/answers', methods=['POST'])
+    @app.route('/api/v1/questions/id/answers', methods=['POST'])
     def add_answer():
         if 'id' in request.args:
             id = int(request.args['id'])
