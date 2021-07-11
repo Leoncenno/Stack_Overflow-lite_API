@@ -4,7 +4,7 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
-Questions = [
+questions = [
         {'id': 0,
         'Name': 'Leo',
         'Question': 'mahsfhduujhws anshdshdhj akjsjdiinasksk nmjsbhhjjskknms  sbbhbhsjhjdsn',
@@ -27,7 +27,7 @@ Questions = [
 class Interactions():
     @app.route('/api/v1/questions', methods=['GET'])
     def all_questions():
-        return jsonify(Questions)
+        return jsonify(questions)
 
     @app.route('/questions/id', methods=['GET'])
     def one_question():
@@ -38,28 +38,28 @@ class Interactions():
 
         search = []
 
-        for Question in Questions:
-            if Question['id'] == id:
-                search.append(Question)
+        for question in questions:
+            if question['id'] == id:
+                search.append(question)
         return jsonify(search)
             
 
     @app.route('/api/v1/questions', methods=['POST'])
     def add_question():
-        AddedQuestion = Questions.append(request.get_json())
-        return jsonify(AddedQuestion)
+        added_question = questions.append(request.get_json())
+        return jsonify(added_question)
 
     @app.route('/questions/id/answers', methods=['POST'])
     def add_answer():
         if 'id' in request.args:
             id = int(request.args['id'])
 
-        Answers = []
+        answers = []
 
-        for Question in Questions:
-            if Question['id'] == id:
-                AddedAnswer = Answers.append(request.get_json())
-                return jsonify(Answers)
+        for question in questions:
+            if question['id'] == id:
+                added_answer = answers.append(request.get_json())
+                return jsonify(answers)
             else:
                 return"No such question"
 
