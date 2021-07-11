@@ -23,22 +23,18 @@ questions = [
 ]
 
 
-@app.route('/api/v1/questions', methods=['GET'])
+@app.route('/api/v1/questions')
 def all_questions():
     return jsonify(questions)
 
 
-@app.route('/api/v1/questions/id', methods=['GET'])
-def one_question():
-    if 'id' in request.args:
-        id = int(request.args['id'])
-    else:
-        return"Sorry, no match"
-    search = []
+@app.route('/api/v1/questions/<id>')
+def one_question(id):
     for question in questions:
-        if question['id'] == id:
-            search.append(question)
-    return jsonify(search)
+        if question['id'] == int(id):
+            return jsonify(question)
+    
+    return jsonify({'message': f'No question with id {id}'}), 404
 
 
 @app.route('/api/v1/questions', methods=['POST'])
