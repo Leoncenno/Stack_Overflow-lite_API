@@ -5,23 +5,23 @@ app = Flask(__name__)
 app.config['DEBUG'] = True
 
 questions = [
-        {'id': 0,
-        'Name': 'Leo',
-        'Question': 'mahsfhduujhws anshdshdhj akjsjdiinasksk nmjsbhhjjskknms  sbbhbhsjhjdsn',
-        'Answer': ''},
-        {'id': 1,
-        'Name': 'Odongo',
-        'Question': 'mahsfhduujhws anshdshdhj akjsjdiinasksk nmjsbhhjjskknms  sbbhbhsjhjdsn',
-        'Answer': ''},
-        {'id': 2,
-        'Name': 'Okello',
-        'Question': 'mahsfhduujhws anshdshdhj akjsjdiinasksk nmjsbhhjjskknms  sbbhbhsjhjdsn',
-        'Answer': ''},
-        {'id': 3,
-        'Name': 'Opio',
-        'Question': 'mahsfhduujhws anshdshdhj akjsjdiinasksk nmjsbhhjjskknms  sbbhbhsjhjdsn',
-        'Answer': ''},
-    ]
+    {'id': 0,
+     'Name': 'Leo',
+     'Question': 'mahsfhduujhws anshdshdhj akjsjdiinasksk nmjsbhhjjskknms  sbbhbhsjhjdsn',
+     'Answer': ''},
+    {'id': 1,
+     'Name': 'Odongo',
+     'Question': 'mahsfhduujhws anshdshdhj akjsjdiinasksk nmjsbhhjjskknms  sbbhbhsjhjdsn',
+     'Answer': ''},
+    {'id': 2,
+     'Name': 'Okello',
+     'Question': 'mahsfhduujhws anshdshdhj akjsjdiinasksk nmjsbhhjjskknms  sbbhbhsjhjdsn',
+     'Answer': ''},
+    {'id': 3,
+     'Name': 'Opio',
+     'Question': 'mahsfhduujhws anshdshdhj akjsjdiinasksk nmjsbhhjjskknms  sbbhbhsjhjdsn',
+     'Answer': ''},
+]
 
 
 class Interactions():
@@ -42,7 +42,6 @@ class Interactions():
             if question['id'] == id:
                 search.append(question)
         return jsonify(search)
-            
 
     @app.route('/api/v1/questions', methods=['POST'])
     def add_question():
@@ -61,38 +60,7 @@ class Interactions():
                 added_answer = answers.append(request.get_json())
                 return jsonify(answers)
             else:
-                return"No such question"
+                return "No such question"
 
 
-app.run(debug=True)    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.run(debug=True)
