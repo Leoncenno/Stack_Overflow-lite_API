@@ -5,21 +5,21 @@ app.config['DEBUG'] = True
 
 questions = [
     {'id': 0,
-     'Name': 'Leo',
-     'Question': 'mahsfhduujhws anshdshdhj akjsjdiinasksk nmjsbhhjjskknms  sbbhbhsjhjdsn',
-     'Answer': ''},
+     'name': 'Leo',
+     'question': 'mahsfhduujhws anshdshdhj akjsjdiinasksk nmjsbhhjjskknms  sbbhbhsjhjdsn',
+     'answer': ''},
     {'id': 1,
-     'Name': 'Odongo',
-     'Question': 'mahsfhduujhws anshdshdhj akjsjdiinasksk nmjsbhhjjskknms  sbbhbhsjhjdsn',
-     'Answer': ''},
+     'name': 'Odongo',
+     'question': 'mahsfhduujhws anshdshdhj akjsjdiinasksk nmjsbhhjjskknms  sbbhbhsjhjdsn',
+     'answer': ''},
     {'id': 2,
-     'Name': 'Okello',
-     'Question': 'mahsfhduujhws anshdshdhj akjsjdiinasksk nmjsbhhjjskknms  sbbhbhsjhjdsn',
-     'Answer': ''},
+     'name': 'Okello',
+     'question': 'mahsfhduujhws anshdshdhj akjsjdiinasksk nmjsbhhjjskknms  sbbhbhsjhjdsn',
+     'answer': ''},
     {'id': 3,
-     'Name': 'Opio',
-     'Question': 'mahsfhduujhws anshdshdhj akjsjdiinasksk nmjsbhhjjskknms  sbbhbhsjhjdsn',
-     'Answer': ''},
+     'name': 'Opio',
+     'question': 'mahsfhduujhws anshdshdhj akjsjdiinasksk nmjsbhhjjskknms  sbbhbhsjhjdsn',
+     'answer': ''},
 ]
 
 
@@ -39,8 +39,11 @@ def one_question(id):
 
 @app.route('/api/v1/questions', methods=['POST'])
 def add_question():
-    added_question = questions.append(request.get_json())
-    return jsonify(added_question)
+    number_of_questions = len(questions)
+    question_to_add = request.get_json()
+    question_to_add['id'] = number_of_questions
+    questions.append(request.get_json())
+    return jsonify(question_to_add), 201
 
 
 @app.route('/api/v1/questions/id/answers', methods=['POST'])
