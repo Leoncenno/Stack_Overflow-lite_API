@@ -4,16 +4,16 @@ app = Flask(__name__)
 app.config['DEBUG'] = True
 
 questions = [
-    {'pk': 0,
+    {'id': 0,
      'question': 'mahsfhduujhws anshdshdhj akjsjdiinasksk nmjsbhhjjskknms  sbbhbhsjhjdsn',
      'answers': [{'answer': 'none yet'}]},
-    {'pk': 1,
+    {'id': 1,
      'question': 'mahsfhduujhws anshdshdhj akjsjdiinasksk nmjsbhhjjskknms  sbbhbhsjhjdsn',
      'answers': [{'answer': ''}]},
-    {'pk': 2,
+    {'id': 2,
      'question': 'I leon the one making this ahppen at the firsty place?',
      'answers': [{'answer': ''}]},
-    {'pk': 3,
+    {'id': 3,
      'question': 'mahsfhduujhws anshdshdhj akjsjdiinasksk nmjsbhhjjskknms  sbbhbhsjhjdsn',
      'answers': [{'answer': ''}]},
 ]
@@ -24,13 +24,15 @@ def all_questions():
     return jsonify(questions)
 
 
-@app.route('/api/v1/question/<pk>')
-def one_question(pk):
+@app.route('/api/v1/question/<id>')
+def one_question(id):
+    if 'id' in request.args:
+        id = int(request.args['id'])
     for question in questions:
-        if question['pk'] == int(pk):
+        if question['id'] == int(id):
             return jsonify(question)
-        else:
-            return jsonify({'warning': 'Invalid question ID'}), 404
+    else:
+        return jsonify({'warning': 'Invalid question ID'}), 404
 
 
 app.run(debug=True)
