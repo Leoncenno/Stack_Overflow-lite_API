@@ -24,7 +24,7 @@ def all_questions():
     return jsonify(questions)
 
 
-@app.route('/api/v1/question/<id>')
+@app.route('/api/v1/questions/<id>')
 def one_question(id):
     if 'id' in request.args:
         id = int(request.args['id'])
