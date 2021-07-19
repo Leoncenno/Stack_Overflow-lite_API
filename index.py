@@ -41,7 +41,20 @@ def post_question():
     number_of_questions = len(questions)
     added_question['id'] = number_of_questions
     questions.append(added_question)
-    return jsonify(added_question)
+    return jsonify(added_question), 201
+
+
+@app.route('/api/v1/questions/<id>/answers', methods=['POST'])
+def post_answer(id):
+    if 'id' in request.args:
+        id = int(request.args['id'])
+        result = questions[id]['answers']
+        for answer in questions:
+            answer = request.get_json()
+            result.append(answer)
+            return jsonify(result.append(answer)), 201
+    else:
+        return jsonify({'Warning': 'Invalid question ID'}), 404
 
 
 app.run(debug=True)
