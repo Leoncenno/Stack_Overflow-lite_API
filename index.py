@@ -50,13 +50,14 @@ def post_question():
 def post_answer(id):
     if 'id' in request.args:
         id = int(request.args['id'])
-        result = questions[id]['answers']
-        for answer in questions:
-            answer = request.get_json()
-            result.append(answer)
-            return jsonify(result.append(answer)), 201
-    else:
-        return jsonify({'Warning': 'Invalid question ID'}), 404
+    for question in questions:
+        if question['id'] == int(id):
+            question = question['question']
+            new_answer = request.json
+            ans = new_answer
+            questions.append(
+                {'id': id, 'question': question, 'answers': [{'answer': ans['answer']}]})
+    return jsonify(questions)
 
 
 app.run(debug=True)
