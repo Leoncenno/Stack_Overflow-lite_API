@@ -1,5 +1,4 @@
 appdirs==1.4.4
-apturl==0.5.2
 attrs==21.2.0
 autopep8==1.5.7
 bcrypt==3.1.7
@@ -23,8 +22,6 @@ entrypoints==0.3
 fasteners==0.14.1
 filelock==3.0.12
 Flask==1.1.1
-flask-marshmallow==0.14.0
-Flask-SQLAlchemy==2.5.1
 future==0.18.2
 greenlet==1.1.0
 httplib2==0.14.0
