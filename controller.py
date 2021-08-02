@@ -27,7 +27,7 @@ def one_question(id):
         if check_question and (question['id'] == int(id)):
             return jsonify(question), 200
     else:
-        return jsonify({'warning': 'Invalid question ID, bad request'}), 404
+        return jsonify({'warning': 'Invalid question ID'}), 404
 
 
 @app.route('/api/v1/questions', methods=['POST'])
