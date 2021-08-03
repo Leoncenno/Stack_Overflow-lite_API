@@ -11,5 +11,7 @@ install:
   - pip install pytest
 script:
   - pytest
+  - sbt clean coverage test
 after_success:
   - coveralls
+  - sbt coveralls
