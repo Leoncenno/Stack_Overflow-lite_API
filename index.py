@@ -35,4 +35,13 @@ def one_question(id):
         return jsonify({'warning': 'Invalid question ID'}), 404
 
 
+@app.route('/api/v1/questions', methods=['POST'])
+def post_question():
+    added_question = request.get_json()
+    number_of_questions = len(questions)
+    added_question['id'] = number_of_questions
+    questions.append(added_question)
+    return jsonify(added_question)
+
+
 app.run(debug=True)
