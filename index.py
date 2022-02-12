@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, json
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -37,11 +37,27 @@ def one_question(id):
 
 @app.route('/api/v1/questions', methods=['POST'])
 def post_question():
-    added_question = request.get_json()
+    new_question = request.json
+    qn = new_question['question']
     number_of_questions = len(questions)
-    added_question['id'] = number_of_questions
-    questions.append(added_question)
-    return jsonify(added_question)
+    id = int(number_of_questions)
+    print(qn)
+    questions.append({'id': id, 'question': qn, 'answers': [{'answer': ''}]})
+    return jsonify(questions), 201
+
+
+@app.route('/api/v1/questions/<id>/answers', methods=['POST'])
+def post_answer(id):
+    if 'id' in request.args:
+        id = int(request.args['id'])
+    for question in questions:
+        if question['id'] == int(id):
+            question = question['question']
+            new_answer = request.json
+            ans = new_answer
+            questions.append(
+                {'id': id, 'question': question, 'answers': [{'answer': ans['answer']}]})
+    return jsonify(questions)
 
 
 app.run(debug=True)
